@@ -1,47 +1,32 @@
 package edu.up.cs301.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Suit the suit of a playing card (e.g., Club).
  * 
  * @author Steven R. Vegdahl 
- * @version July 2013 
+ * @version December 2016
  */
-public enum Suit {
+public enum Suit implements Serializable {
 	
 	// club
-	Club {
-//		// the "long name
-//		@Override
-//		public String longName() {
-//			return "Club";
-//		}
-	},
+	Club,
 	
 	// diamond
-	Diamond {
-//		@Override
-//		public String longName() {
-//			return "Diamond";
-//		}
-	},
+	Diamond,
 	
 	// heart
-	Heart {
-//		@Override
-//		public String longName() {
-//			return "Heart";
-//		}
-	},
+	Heart,
 	
 	// spade
-	Spade {
-//		@Override
-//		public String longName() {
-//			return "Spade";
-//		}
-	};
+	Spade,
+
+	;
+
+	// to satisfy the Serializable interface
+	private static final long serialVersionUID = 521100342061033418L;
 
 	/**
 	 * the "short" (one-character) name that represents the suit

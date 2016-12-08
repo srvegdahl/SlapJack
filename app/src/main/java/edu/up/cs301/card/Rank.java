@@ -1,14 +1,15 @@
 package edu.up.cs301.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Steven R. Vegdahl
- * @version July 2013
+ * @version December 2016
  */
-public enum Rank {
-	
+public enum Rank implements Serializable {
+
 	// ace
 	ACE,
 	
@@ -96,6 +97,9 @@ public enum Rank {
 	// king
 	KING
 	;
+
+	// to satisfy the Serializable interface
+	private static final long serialVersionUID = 893542931190030342L;
 
 	/**
 	 * the short (one-character) name of a rank

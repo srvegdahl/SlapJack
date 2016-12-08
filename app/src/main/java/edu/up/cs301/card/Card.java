@@ -23,7 +23,7 @@ import android.graphics.RectF;
  * res/drawable-hdpi project area.
  * 
  * @author Steven R. Vegdahl
- * @version July 2013
+ * @version December 2016
  */
 public class Card implements Serializable {
 
@@ -34,16 +34,26 @@ public class Card implements Serializable {
     private Rank rank;
     private Suit suit;
 
-    /**
-     * Constructor for class card
-     *
-     * @param r the Rank of the card
-     * @param s the Suit of the card
-     */
-    public Card(Rank r, Suit s) {
-        rank = r;
-        suit = s;
-    }
+	/**
+	 * Constructor for class card
+	 *
+	 * @param r the Rank of the card
+	 * @param s the Suit of the card
+	 */
+	public Card(Rank r, Suit s) {
+		rank = r;
+		suit = s;
+	}
+
+	/**
+	 * Constructor for class card (copy constructor)
+	 *
+	 * @param orig the card to copy
+	 */
+	public Card(Card orig) {
+		rank = orig.rank;
+		suit = orig.suit;
+	}
 
     /**
      * Creates a Card from a String.  (Can be used instead of the
@@ -88,16 +98,33 @@ public class Card implements Serializable {
         return rank.longName()+" of "+suit.longName()+"s";
     }
 
-    /**
-     * Tells whether two Card objects represent the same card.
-     *
-     * @return
+	/**
+	 * Tells whether object are equal -- in other words that they are both Card
+	 * objects that represent the same card.
+	 *
+	 * @return
 	 *		true if the two card objects represent the same card, false
-     *		otherwise.
-     */
-    public boolean equals(Card other) {
-        return this.rank == other.rank && this.suit == other.suit;
-    }
+	 *		otherwise.
+	 */
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Card)) return false;
+		Card c = (Card)other;
+		return this.rank == c.rank && this.suit == c.suit;
+	}
+
+	/**
+	 * Tells whether object are equal -- in other words that they are both Card
+	 * objects that represent the same card.
+	 *
+	 * @return
+	 *		true if the two card objects represent the same card, false
+	 *		otherwise.
+	 */
+	@Override
+	public int hashCode() {
+		return rank.hashCode()*18737 + suit.hashCode()*1737372;
+	}
 
     /**
      * Draws the card on a Graphics object.  The card is drawn as a
